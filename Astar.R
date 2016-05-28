@@ -31,7 +31,7 @@ selPrior <- function(log){
 }
 
 N <- function(struct){
-  visited = struct["visited"]
+  visited = struct[["visited"]]
   result <- list()
   curr <- struct[["curr"]]
   neighbors <- getNeighbors(curr)
