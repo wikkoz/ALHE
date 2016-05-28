@@ -5,9 +5,9 @@ nodes <- list(
 )
 
 edges <- list (
-  "START" = list("A"= function(x) 40, "B"= function(x) 80),
-  "A" = list("START"= function(x) 40, "B"= function(x) 80),
-  "B" = list("A"= function(x) 40, "START"= function(x) 80)
+  "START" = list("A"= function(x) 40, "B"= function(x) 30),
+  "A" = list("START"= function(x) 40, "B"= function(x) 30),
+  "B" = list("A"= function(x) 40, "START"= function(x) 30)
 )
 
 price <- function(n, time){
@@ -15,7 +15,13 @@ price <- function(n, time){
 }
   
 count_heuristic <- function(visited, time, price){
-  return (0)
+  value <- 0
+  for(n in names(nodes)){
+    if(!n %in% visited){
+      value <- value + nodes[[n]](time)
+    }
+  }
+  return(value)
 }
 
 time <- function(curr, nextt, timee){
@@ -59,10 +65,14 @@ H <- list(list("visited" = vector('character'),
           "time" = 0,
           "price" = 0,
           "heuristic" = count_heuristic(vector('character'), 0, 0)))
-  x<-selPrior(H)
-  Y<-N(x)H
-  H<-append(Y, H)
-  H[order(sapply(H, function(x) x[["price"]]+x[["heuristic"]], simplify = TRUE),
-          decreasing = TRUE)]
+  while(length(H[[1]][["visited"]])<3){
+    x<-selPrior(H)
+    H[[1]] <- NULL
+    Y<-N(x)
+    H<-append(Y, H)
+    H
+    H[order(sapply(H, function(x) x[["price"]]+x[["heuristic"]], simplify = TRUE),
+            decreasing = TRUE)]
+  }
 
 
