@@ -70,8 +70,7 @@ H <- list(list("visited" = vector('character'),
     H[[1]] <- NULL
     Y<-N(x)
     H<-append(Y, H)
-    H
-    H[order(sapply(H, function(x) x[["price"]]+x[["heuristic"]], simplify = TRUE),
+    H<-H[order(sapply(H, function(x) x[["price"]]+x[["heuristic"]], simplify = TRUE),
             decreasing = TRUE)]
   }
 
