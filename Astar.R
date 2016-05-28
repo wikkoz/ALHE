@@ -1,13 +1,13 @@
 nodes <- list(
   "START" = (function(x) 0),
-  "A"= (function(x) if(x>200) 0 else 200-x),
+  "A"= (function(x) if(x>200) 0 else 200-0.5*x),
   "B" = (function(x) if(x>100) 0 else 200 - 2*x)
 )
 
 edges <- list (
-  "START" = list("A"= function(x) 40, "B"= function(x) 30),
-  "A" = list("START"= function(x) 40, "B"= function(x) 30),
-  "B" = list("A"= function(x) 40, "START"= function(x) 30)
+  "START" = list("A"= function(x) 4, "B"= function(x) 30),
+  "A" = list("START"= function(x) 100, "B"= function(x) 30),
+  "B" = list("A"= function(x) 40, "START"= function(x) 3)
 )
 
 price <- function(n, time){
@@ -60,7 +60,7 @@ N <- function(struct){
 }
 
 
-H <- list(list("visited" = vector('character'),
+H <- list(list("visited" = c("START"),
           "curr" = "START",
           "time" = 0,
           "price" = 0,
