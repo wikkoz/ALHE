@@ -1,39 +1,55 @@
 nodes <- list(
   "START" = (function(x) 0),
-  "A"= (function(x) if(x>200) 0 else 200-0.5*x),
-  "B" = (function(x) if(x>100) 0 else 200 - 2*x),
-  "C" = (function(x) if(x>100) 0 else 200 - 0.1*x),
-  "D" = (function(x) if(x>100) 0 else 200 - 0.4*x),
-  "E" = (function(x) if(x>100) 0 else 200 - 10*x),
-  "F" = (function(x) if(x>100) 0 else 200 - 6.4*x),
-  "G" = (function(x) if(x>100) 0 else 200 - 3*x),
-  "H" = (function(x) if(x>100) 0 else 200 - 3.5*x),
-  "I" = (function(x) if(x>100) 0 else 200 - 4*x),
-  "J" = (function(x) if(x>100) 0 else 200 - 4.4*x),
-  "K" = (function(x) if(x>100) 0 else 200 - 4.3*x)
+  "A"= (function(x) if(x>700) 0 else 22-0.005*x),
+  "B" = (function(x) if(x>700) 0 else 20 - 0.002*x),
+  "C" = (function(x) if(x>700) 0 else 29 - 0.001*x),
+  "D" = (function(x) if(x>700) 0 else 20 - 0.004*x),
+  "E" = (function(x) if(x>700) 0 else 20 - 0.021*x),
+  "F" = (function(x) if(x>700) 0 else 20 - 0.004*x),
+  "G" = (function(x) if(x>700) 0 else 20 - 0.003*x),
+  "H" = (function(x) if(x>700) 0 else 30 - 0.02*x),
+  "I" = (function(x) if(x>700) 0 else 20 - 0.032*x)
+
 )
 
 edges <- list (
-  "START" = list("A"= function(x) 4, "B"= function(x) 30, "
-                 c"= function(x) 35),
-  "A" = list("START"= function(x) 100, "B"= function(x) 30),
-  "B" = list("A"= function(x) 40, "START"= function(x) 3),
-  "C" = list("A"= function(x) 40, "START"= function(x) 23),
-  "D" = list("A"= function(x) 40, "C"= function(x) 33),
-  "E" = list("A"= function(x) 60, "K"= function(x) 43),
-  "F" = list("A"= function(x) 80, "D"= function(x) 53),
-  "G" = list("A"= function(x) 30, "K"= function(x) 63),
-  "H" = list("A"= function(x) 10, "K"= function(x) 73),
-  "I" = list("A"= function(x) 20, "C"= function(x) 83),
-  "J" = list("A"= function(x) 90, "F"= function(x) 93, "B"= function(x) 9, "K"= function(x) 74, "E"= function(x) 3, "D"= function(x) 2, "START"= function(x) 44),
-  "K" = list("A"= function(x) 100, "J"= function(x) 44, "B"= function(x) 49, "K"= function(x) 44, "E"= function(x) 23, "D"= function(x) 20, "START"= function(x) 44)
+  "START" = list("A"= function(x) 15+0.0008*x*(700-x), "B"= function(x) 34+0.00052*x*(700-x), "E"= function(x) 33+0.00051*x*(700-x), "D"= function(x) 32+0.0002*x*(700-x),
+                 "C"= function(x) 30+0.00053*x*(700-x), "G"= function(x) 30+0.0001*x*(700-x), "F"= function(x) 30+0.00032*x*(700-x),
+                 "H"= function(x) 50+0.00001*x*(700-x), "I"= function(x) 30+0.0005*x*(700-x)),
+  "A" = list("A"= function(x) 31+0.0015*x*(700-x), "B"= function(x) 32+0.0001*x*(700-x), "E"= function(x) 30+0.0005*x*(700-x), "D"= function(x) 30+0.0005*x*(700-x),
+             "C"= function(x) 12+0.0003*x*(700-x), "G"= function(x) 20+0.0002*x*(700-x), "F"= function(x) 3+0.0025*x*(700-x),
+             "H"= function(x) 33+0.0002*x*(700-x), "I"= function(x) 30+0.0005*x*(700-x)),
+  "B" = list("A"= function(x) 20+0.0004*x*(700-x), "B"= function(x) 30+0.0005*x*(700-x), "E"= function(x) 23+0.0007*x*(700-x), "D"= function(x) 30+0.0005*x*(700-x),
+             "C"= function(x) 30+0.00056*x*(700-x), "G"= function(x) 30+0.0015*x*(700-x), "F"= function(x) 31+0.0025*x*(700-x),
+             "H"= function(x) 30+0.0001*x*(700-x), "I"= function(x) 30+0.0005*x*(700-x)),
+  "C" = list("A"= function(x) 32+0.0015*x*(700-x), "B"= function(x) 33+0.0001*x*(700-x), "E"= function(x) 32+0.0025*x*(700-x), "D"= function(x) 30+0.0005*x*(700-x),
+             "C"= function(x) 13+0.0005*x*(700-x), "G"= function(x) 32+0.0002*x*(700-x), "F"= function(x) 31+0.005*x*(700-x),
+             "H"= function(x) 23+0.0005*x*(700-x), "I"= function(x) 30+0.0005*x*(700-x)),
+  "D" = list("A"= function(x) 12+0.0005*x*(700-x), "B"= function(x) 20+0.0001*x*(700-x), "E"= function(x) 13+0.0002*x*(700-x), "D"= function(x) 30+0.0005*x*(700-x),
+             "C"= function(x) 34+0.0003*x*(700-x), "G"= function(x) 10+0.0002*x*(700-x), "F"= function(x) 12+0.0001*x*(700-x),
+             "H"= function(x) 12+0.0005*x*(700-x), "I"= function(x) 30+0.0005*x*(700-x)),
+  "E" = list("A"= function(x) 30+0.0002*x*(700-x), "B"= function(x) 12+0.0005*x*(700-x), "E"= function(x) 33+0.0001*x*(700-x), "D"= function(x) 30+0.0005*x*(700-x),
+             "C"= function(x) 30+0.0005*x*(700-x), "G"= function(x) 13+0.0005*x*(700-x), "F"= function(x) 23+0.0002*x*(700-x),
+             "H"= function(x) 33+0.0002*x*(700-x), "I"= function(x) 30+0.0005*x*(700-x)),
+  "F" = list("A"= function(x) 32+0.0001*x*(700-x), "B"= function(x) 11+0.0025*x*(700-x), "E"= function(x) 30+0.0031*x*(700-x), "D"= function(x) 30+0.0005*x*(700-x),
+             "C"= function(x) 36+0.0001*x*(700-x), "G"= function(x) 23+0.001*x*(700-x), "F"= function(x) 30+0.00123*x*(700-x),
+             "H"= function(x) 40+0.0001*x*(700-x), "I"= function(x) 30+0.0005*x*(700-x)),
+  "G" = list("A"= function(x) 7+0.002*x*(700-x), "B"= function(x) 12.3+0.0003*x*(700-x), "E"= function(x) 53+0.0012*x*(700-x), "D"= function(x) 30+0.0005*x*(700-x),
+             "C"= function(x) 16+0.0007*x*(700-x), "G"= function(x) 41+0.0004*x*(700-x), "F"= function(x) 32+0.00043*x*(700-x),
+             "H"= function(x) 11+0.0005*x*(700-x), "I"= function(x) 30+0.0005*x*(700-x)),
+  "H" = list("A"= function(x) 21+0.0009*x*(700-x), "B"= function(x) 15+0.0002*x*(700-x), "E"= function(x) 34+0.0002*x*(700-x), "D"= function(x) 30+0.0005*x*(700-x),
+             "C"= function(x) 13+0.0005*x*(700-x), "G"= function(x) 12+0.0001*x*(700-x), "F"= function(x) 30+0.0002*x*(700-x),
+             "H"= function(x) 22+0.0003*x*(700-x), "I"= function(x) 30+0.0005*x*(700-x)),
+  "I" = list("A"= function(x) 30+0.0002*x*(700-x), "B"= function(x) 12+0.0005*x*(700-x), "E"= function(x) 33+0.0001*x*(700-x), "D"= function(x) 30+0.0005*x*(700-x),
+             "C"= function(x) 30+0.0005*x*(700-x), "G"= function(x) 13+0.0005*x*(700-x), "F"= function(x) 23+0.0002*x*(700-x),
+             "H"= function(x) 33+0.0002*x*(700-x), "I"= function(x) 30+0.0005*x*(700-x))
 )
 
 price <- function(n, time) {
   return (nodes[[n]](time))
 }
   
-count_heuristic <- function(visited, time, price) {
+count_heuristic <- function(visited, time, price, curr, n) {
   value <- 0
   for (n in names(nodes)) {
     if (!n %in% visited) {
@@ -65,7 +81,7 @@ N <- function(struct) {
       new_visited = c(visited, n)
       time <- struct[["time"]] + time(curr, n, struct[["time"]])
       price <- struct[["price"]] + price(n, time)
-      heuristic <- count_heuristic(new_visited, time, price)
+      heuristic <- count_heuristic(new_visited, time, price, curr, n)
       element <- list("visited" = new_visited,
                      "curr" = n,
                      "time" = time,
@@ -78,19 +94,19 @@ N <- function(struct) {
   return (result)
 }
 
-
+LOG <- list(0)
 H <- list(list("visited" = c("START"),
           "curr" = "START",
           "time" = 0,
           "price" = 0,
-          "heuristic" = count_heuristic(vector('character'), 0, 0)))
-  while(length(H[[1]][["visited"]])<3) {
-    x<-selPrior(H)
-    H[[1]] <- NULL
-    Y<-N(x)
-    H<-append(Y, H)
-    H<-H[order(sapply(H, function(x) x[["price"]]+x[["heuristic"]], simplify = TRUE),
-            decreasing = TRUE)]
-  }
-
+          "heuristic" = count_heuristic(vector('character'), 0, 0, "START", "START")))
+while(length(H[[1]][["visited"]])<length(nodes)) {
+  x<-selPrior(H)
+  H[[1]] <- NULL
+  Y<-N(x)
+  H<-append(Y, H)
+  LOG <- append(lapply(Y, function(x) x[["price"]]+x[["heuristic"]]), LOG)
+  H<-H[order(sapply(H, function(x) x[["price"]]+x[["heuristic"]], simplify = TRUE),
+          decreasing = TRUE)]
+}
 
