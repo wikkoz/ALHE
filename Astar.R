@@ -1,11 +1,11 @@
 nodes <- list(
   "START" = (function(x) 0),
   "A"= (function(x) if(x>700) 0 else 22-0.005*x),
-  "B" = (function(x) if(x>700) 0 else 20 - 0.002*x),
-  "C" = (function(x) if(x>700) 0 else 29 - 0.001*x),
-  "D" = (function(x) if(x>700) 0 else 20 - 0.004*x),
+  "B" = (function(x) if(x>700) 0 else 20 - 0.02*x),
+  "C" = (function(x) if(x>700) 0 else 29 - 0.01*x),
+  "D" = (function(x) if(x>700) 0 else 20 - 0.04*x),
   "E" = (function(x) if(x>700) 0 else 40 - 0.021*x),
-  "F" = (function(x) if(x>700) 0 else 20 - 0.004*x),
+  "F" = (function(x) if(x>700) 0 else 20 - 0.04*x),
   "G" = (function(x) if(x>700) 0 else 20 - 0.03*x),
   "H" = (function(x) if(x>700) 0 else 30 - 0.02*x),
   "I" = (function(x) if(x>700) 0 else 50 - 0.032*x)
@@ -78,6 +78,25 @@ count_heuristic2 <- function(visited, time, price, prev, curr) {
     if (!n %in% visited) {
       value <- value + nodes[[n]](0)
     }
+  }
+  return(value)
+}
+
+count_heuristic3 <- function(visited, time, price, prev, curr) {
+  value <- 0
+  temp <- list()
+  for (n in names(nodes)) {
+    if (!n %in% visited) {
+      temp<- c(n, temp)
+    }
+  }
+  temp<-temp[order(sapply(temp, function(x) nodes[[x]](time), simplify = TRUE),
+                   decreasing = TRUE)]
+  lowest = which.min(unlist(lapply(edges, function(x) (lapply(x, function (y) y(0))))))[[1]]
+  i = 0
+  for(t in temp){
+    i = i+1
+    value <- value + nodes[[t]](time + lowest*i)
   }
   return(value)
 }
