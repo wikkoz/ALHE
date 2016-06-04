@@ -166,9 +166,8 @@ for(heur in heuristics){
     H<-H[order(sapply(H, function(x) x[["price"]]+x[["heuristic"]], simplify = TRUE),
             decreasing = TRUE)]
   }
-  
+  value <- c(value,H[[1]][["price"]])
   alist<-c(1:length(LOG))
-  c(value,LOG[[1]])
   png(
     paste(i,"test.png"),
     width     = 3.25,
