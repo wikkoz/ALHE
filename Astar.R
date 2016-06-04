@@ -63,7 +63,7 @@ count_heuristic1 <- function(visited, time, price, prev, curr) {
   value <- 0
   for (n in names(nodes)) {
     if (!n %in% visited) {
-      if(n %in% edges[[curr]])
+      if(n %in% names(edges[[curr]]))
         value <- value + nodes[[n]](time+time(curr, n, time))
       else
         value <- value + nodes[[n]](time)
@@ -74,10 +74,19 @@ count_heuristic1 <- function(visited, time, price, prev, curr) {
 
 count_heuristic2 <- function(visited, time, price, prev, curr) {
   value <- 0
+  temp <- list()
   for (n in names(nodes)) {
     if (!n %in% visited) {
-      value <- value + nodes[[n]](0)
+      temp<- c(n, temp)
     }
+  }
+  set.seed(001)
+  temp<-sample(temp)
+  lowest = which.min(unlist(lapply(edges, function(x) (lapply(x, function (y) y(0))))))[[1]]
+  i = 0
+  for(t in temp){
+    i = i+1
+    value <- value + nodes[[t]](time + lowest*i)
   }
   return(value)
 }
@@ -137,6 +146,7 @@ N <- function(struct, heur) {
   return (result)
 }
 
+value <- list()
 i <- 0
 heuristics = list(count_heuristic, count_heuristic1, count_heuristic2, count_heuristic3)
 for(heur in heuristics){
@@ -156,8 +166,9 @@ for(heur in heuristics){
     H<-H[order(sapply(H, function(x) x[["price"]]+x[["heuristic"]], simplify = TRUE),
             decreasing = TRUE)]
   }
-  alist<-c(1:length(LOG))
   
+  alist<-c(1:length(LOG))
+  c(value,LOG[[1]])
   png(
     paste(i,"test.png"),
     width     = 3.25,
