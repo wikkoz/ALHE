@@ -8,7 +8,13 @@ nodes <- list(
   "F" = (function(x) if(x>700) 0 else 20 - 0.04*x),
   "G" = (function(x) if(x>700) 0 else 20 - 0.03*x),
   "H" = (function(x) if(x>700) 0 else 30 - 0.02*x),
-  "I" = (function(x) if(x>700) 0 else 50 - 0.032*x)
+  "I" = (function(x) if(x>700) 0 else 50 - 0.032*x),
+  "J" = (function(x) if(x>700) 0 else 50 - 0.01*x),
+  "K" = (function(x) if(x>700) 0 else 50 - 0.02*x),
+  "L" = (function(x) if(x>700) 0 else 50 - 0.042*x),
+  "M" = (function(x) if(x>700) 0 else 50 - 0.012*x),
+  "N" = (function(x) if(x>700) 0 else 50 - 0.05*x),
+  "O" = (function(x) if(x>700) 0 else 50 - 0.052*x)
   
 )
 
