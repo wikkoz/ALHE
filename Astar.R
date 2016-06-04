@@ -152,4 +152,24 @@ while(length(H[[1]][["visited"]])<length(nodes)) {
   H<-H[order(sapply(H, function(x) x[["price"]]+x[["heuristic"]], simplify = TRUE),
           decreasing = TRUE)]
 }
+alist<-c(1:length(LOG))
 
+png(
+  "test.png",
+  width     = 3.25,
+  height    = 3.25,
+  units     = "in",
+  res       = 1200,
+  pointsize = 1
+)
+par(
+  mar      = c(5, 5, 2, 2),
+  xaxs     = "i",
+  yaxs     = "i",
+  cex.axis = 2,
+  cex.lab  = 2
+)
+
+
+plot(alist, LOG, cex=0.1, pch=4, type="p", col="blue")
+dev.off()
