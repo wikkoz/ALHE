@@ -42,7 +42,26 @@ edges <- list (
              "H"= function(x) 22+0.0003*x*(700-x), "I"= function(x) 30+0.0005*x*(700-x)),
   "I" = list("A"= function(x) 30+0.0002*x*(700-x), "B"= function(x) 12+0.0005*x*(700-x), "E"= function(x) 33+0.0001*x*(700-x), "D"= function(x) 30+0.0005*x*(700-x),
              "C"= function(x) 13+0.0005*x*(700-x), "G"= function(x) 12+0.0001*x*(700-x), "F"= function(x) 30+0.0002*x*(700-x),
-             "H"= function(x) 33+0.0002*x*(700-x), "I"= function(x) 30+0.0005*x*(700-x))
+             "H"= function(x) 33+0.0002*x*(700-x), "I"= function(x) 30+0.0005*x*(700-x)),
+  "J" = list("M"= function(x) 30+0.0002*x*(700-x), "B"= function(x) 12+0.0005*x*(700-x), "E"= function(x) 33+0.0001*x*(700-x), "D"= function(x) 30+0.0005*x*(700-x),
+             "C"= function(x) 13+0.0005*x*(700-x), "G"= function(x) 12+0.0001*x*(700-x), "F"= function(x) 30+0.0002*x*(700-x),
+             "H"= function(x) 33+0.0002*x*(700-x), "I"= function(x) 30+0.0005*x*(700-x)),
+  "K" = list("A"= function(x) 30+0.0002*x*(700-x), "L"= function(x) 12+0.0005*x*(700-x), "E"= function(x) 33+0.0001*x*(700-x), "D"= function(x) 30+0.0005*x*(700-x),
+             "C"= function(x) 13+0.0005*x*(700-x), "G"= function(x) 12+0.0001*x*(700-x), "F"= function(x) 30+0.0002*x*(700-x),
+             "H"= function(x) 7+0.0002*x*(700-x), "I"= function(x) 30+0.0005*x*(700-x)),
+  "L" = list("A"= function(x) 23+0.0002*x*(700-x), "B"= function(x) 12+0.0005*x*(700-x), "J"= function(x) 52+0.0001*x*(700-x), "C"= function(x) 35+0.0005*x*(700-x),
+             "C"= function(x) 2+0.0005*x*(700-x), "G"= function(x) 12+0.0001*x*(700-x), "F"= function(x) 37+0.0002*x*(700-x),
+             "H"= function(x) 77+0.0002*x*(700-x), "I"= function(x) 34+0.0005*x*(700-x)),
+  "M" = list("A"= function(x) 37+0.0002*x*(700-x), "B"= function(x) 13+0.0005*x*(700-x), "K"= function(x) 35+0.0001*x*(700-x), "D"= function(x) 30+0.0005*x*(700-x),
+             "C"= function(x) 19+0.0005*x*(700-x), "G"= function(x) 15+0.0001*x*(700-x), "F"= function(x) 33+0.0002*x*(700-x),
+             "H"= function(x) 36+0.0002*x*(700-x), "I"= function(x) 39+0.0005*x*(700-x)),
+  "N" = list("A"= function(x) 35+0.0002*x*(700-x), "B"= function(x) 19+0.0005*x*(700-x), "O"= function(x) 32+0.0001*x*(700-x), "D"= function(x) 34+0.0005*x*(700-x),
+             "C"= function(x) 11+0.0005*x*(700-x), "G"= function(x) 18+0.0001*x*(700-x), "F"= function(x) 31+0.0002*x*(700-x),
+             "H"= function(x) 32+0.0002*x*(700-x), "I"= function(x) 34+0.0005*x*(700-x)),
+  "O" = list("A"= function(x) 33+0.0002*x*(700-x), "B"= function(x) 11+0.0005*x*(700-x), "N"= function(x) 34+0.0001*x*(700-x), "D"= function(x) 31+0.0005*x*(700-x),
+             "C"= function(x) 23+0.0005*x*(700-x), "G"= function(x) 19+0.0001*x*(700-x), "F"= function(x) 38+0.0002*x*(700-x),
+             "H"= function(x) 34+0.0002*x*(700-x), "I"= function(x) 38+0.0005*x*(700-x))
+  
 )
 
 price <- function(n, time) {
