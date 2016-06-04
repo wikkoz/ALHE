@@ -9,7 +9,7 @@ nodes <- list(
   "G" = (function(x) if(x>700) 0 else 20 - 0.03*x),
   "H" = (function(x) if(x>700) 0 else 30 - 0.02*x),
   "I" = (function(x) if(x>700) 0 else 50 - 0.032*x)
-
+  
 )
 
 edges <- list (
@@ -114,7 +114,7 @@ selPrior <- function(log){
   return (log[[1]])
 }
 
-N <- function(struct) {
+N <- function(struct, heur) {
   visited = struct[["visited"]]
   result <- list()
   curr <- struct[["curr"]]
@@ -124,7 +124,7 @@ N <- function(struct) {
       new_visited = c(visited, n)
       time <- struct[["time"]] + time(curr, n, struct[["time"]])
       price <- struct[["price"]] + price(n, time)
-      heuristic <- count_heuristic(new_visited, time, price, curr, n)
+      heuristic <- heur(new_visited, time, price, curr, n)
       element <- list("visited" = new_visited,
                      "curr" = n,
                      "time" = time,
@@ -137,39 +137,44 @@ N <- function(struct) {
   return (result)
 }
 
-LOG <- list(0)
-H <- list(list("visited" = c("START"),
-          "curr" = "START",
-          "time" = 0,
-          "price" = 0,
-          "heuristic" = count_heuristic(vector('character'), 0, 0, "START", "START")))
-while(length(H[[1]][["visited"]])<length(nodes)) {
-  x<-selPrior(H)
-  H[[1]] <- NULL
-  Y<-N(x)
-  H<-append(Y, H)
-  LOG <- append(lapply(Y, function(x) x[["price"]]+x[["heuristic"]]), LOG)
-  H<-H[order(sapply(H, function(x) x[["price"]]+x[["heuristic"]], simplify = TRUE),
-          decreasing = TRUE)]
+i <- 0
+heuristics = list(count_heuristic, count_heuristic1, count_heuristic2, count_heuristic3)
+for(heur in heuristics){
+  i <- i +1
+  LOG <- list(0)
+  H <- list(list("visited" = c("START"),
+            "curr" = "START",
+            "time" = 0,
+            "price" = 0,
+            "heuristic" = heur(vector('character'), 0, 0, "START", "START")))
+  while(length(H[[1]][["visited"]])<length(nodes)) {
+    x<-selPrior(H)
+    H[[1]] <- NULL
+    Y<-N(x ,heur)
+    H<-append(Y, H)
+    LOG <- append(lapply(Y, function(x) x[["price"]]+x[["heuristic"]]), LOG)
+    H<-H[order(sapply(H, function(x) x[["price"]]+x[["heuristic"]], simplify = TRUE),
+            decreasing = TRUE)]
+  }
+  alist<-c(1:length(LOG))
+  
+  png(
+    paste(i,"test.png"),
+    width     = 3.25,
+    height    = 3.25,
+    units     = "in",
+    res       = 1200,
+    pointsize = 1
+  )
+  par(
+    mar      = c(5, 5, 2, 2),
+    xaxs     = "i",
+    yaxs     = "i",
+    cex.axis = 2,
+    cex.lab  = 2
+  )
+  
+  
+  plot(alist, LOG, cex=0.1, pch=4, type="p", col="blue")
+  dev.off()
 }
-alist<-c(1:length(LOG))
-
-png(
-  "test.png",
-  width     = 3.25,
-  height    = 3.25,
-  units     = "in",
-  res       = 1200,
-  pointsize = 1
-)
-par(
-  mar      = c(5, 5, 2, 2),
-  xaxs     = "i",
-  yaxs     = "i",
-  cex.axis = 2,
-  cex.lab  = 2
-)
-
-
-plot(alist, LOG, cex=0.1, pch=4, type="p", col="blue")
-dev.off()
