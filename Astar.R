@@ -166,7 +166,7 @@ N <- function(struct, heur) {
 
 value <- list()
 i <- 0
-heuristics = list(count_heuristic3, count_heuristic1, count_heuristic2, count_heuristic)
+heuristics = list(count_heuristic1, count_heuristic3, count_heuristic2, count_heuristic)
 for(heur in heuristics){
   i <- i +1
   LOG <- list(0)
